@@ -1,4 +1,5 @@
-function Player() {
+function Player(id = 0) {
+    this.id = id;
     this.choice = null;
     this.options = ['cooperate', 'defect'];
 

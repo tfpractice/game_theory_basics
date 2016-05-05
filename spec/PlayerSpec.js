@@ -1,19 +1,22 @@
 describe('Player', () => {
-    var myP1 = new Player();
+    var myP0 = new Player();
     describe('init', () => {
+    	it('has an ID', function() {
+    		expect(myP0.id).toBe(0);
+    	});
         it('has an options array', function() {
-            expect(myP1.options).toBeArray();
+            expect(myP0.options).toBeArray();
 
         });
         it('has a (null)choice object', function() {
-            expect(myP1.choice).toBeNull();
+            expect(myP0.choice).toBeNull();
 
         });
     });
     describe('choose', () => {
         it('assigns the players choice value', function() {
-            myP1.choose('defect');
-            expect(myP1.choice).toBe('defect');
+            myP0.choose('defect');
+            expect(myP0.choice).toBe('defect');
         });
     });
 });
