@@ -3,9 +3,9 @@ function Player() {
     this.options = ['cooperate', 'defect'];
 
 }
-Player.prototype.play = function(song) {
-    this.currentlyPlayingSong = song;
-    this.isPlaying = true;
+Player.prototype.choose = function(option) {
+    var oIndex = this.options.indexOf(option)
+    this.choice = this.options[oIndex];
 };
 
 Player.prototype.pause = function() {
