@@ -19,4 +19,10 @@ describe('Player', () => {
             expect(myP0.choice).toBe(1);
         });
     });
+    describe('setGame(currGame)', () => {
+        it('assigns Player.game to currGame', function() {
+            var g = new Dilemma();
+            myP0.setGame(g);
+        });
+    });
 });
