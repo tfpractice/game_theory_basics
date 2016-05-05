@@ -5,8 +5,8 @@ function Player(id = 0) {
 
 }
 Player.prototype.choose = function(option) {
-    var oIndex = this.options.indexOf(option)
-    this.choice = this.options[oIndex];
+    this.choice = this.options.indexOf(option)
+
 };
 
 Player.prototype.pause = function() {
