@@ -4,5 +4,8 @@ describe('Dilemma', () => {
         it('has a players array', function() {
             expect(myDilemma.players).toBeArray();
         });
+        it('has a Payoffs matrix', function() {
+            expect(myDilemma.payoffs).toBeArray();
+        });
     });
 });
