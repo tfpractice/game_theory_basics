@@ -9,8 +9,8 @@ Player.prototype.choose = function(option) {
 
 };
 
-Player.prototype.pause = function() {
-    this.isPlaying = false;
+Player.prototype.setGame = function(currGame) {
+    this.game = currGame;
 };
 
 Player.prototype.resume = function() {
