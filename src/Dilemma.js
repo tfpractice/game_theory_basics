@@ -7,3 +7,9 @@ function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
         [-8, -8]
     ];
 }
+
+Dilemma.prototype.assignDilemma = function() {
+    this.players.forEach(function(p) {
+        p.setGame(this);
+    }, this);
+};

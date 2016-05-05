@@ -8,4 +8,10 @@ describe('Dilemma', () => {
             expect(myDilemma.payoffs).toBeArray();
         });
     });
+    describe('assignDilemma', () => {
+        it('assigns the current dilemma to each player', function() {
+            myDilemma.assignDilemma();
+            expect(myDilemma.players[0].game).toBe(myDilemma);
+        });
+    });
 });
