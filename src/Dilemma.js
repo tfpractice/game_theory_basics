@@ -1,5 +1,7 @@
 function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
     this.players = [p0, p1];
+    this.players[0].setOpponent(this.players[1]);
+    this.players[1].setOpponent(this.players[0]);
     this.utility = [
         [
             [1, 1],
@@ -10,7 +12,7 @@ function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
             [6, 6]
         ]
     ];
-
+    this.assignDilemma();
 }
 
 Dilemma.prototype.assignDilemma = function() {

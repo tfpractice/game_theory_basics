@@ -34,7 +34,10 @@ describe('Player', () => {
     describe('setGame(currGame)', () => {
         it('assigns Player.game to currGame', function() {
             var g = new Dilemma();
-            myP0.setGame(g);
+            var newPlayer = new Player(2);
+            newPlayer.setGame(g);
+            expect(newPlayer.game).toBe(g);
+            // expect(myP0.game)
         });
     });
     describe('potentialPayoffs', () => {
