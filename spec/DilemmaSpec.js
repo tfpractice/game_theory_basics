@@ -16,12 +16,18 @@ describe('Dilemma', () => {
     });
     describe('p0Filter(cIndex)', () => {
         it('returns utilities array based on p0s(row) choice index ', function() {
+            // console.log(myDilemma.p0Filter(1));
             expect(myDilemma.p0Filter(0)).toBeArray();
         });
     });
     describe('p1Filter(cIndex)', () => {
         it('returns utilities array based on p1s(column) choice index ', function() {
             expect(myDilemma.p1Filter(0)).toBeArray();
+        });
+    });
+    describe('playerChoiceFilter(pIndex, cIndex)', () => {
+        it('returns the proper utility based on the given player and choice', function() {
+            expect(myDilemma.playerChoiceFilter(0, 1)).toBeArray();
         });
     });
 });

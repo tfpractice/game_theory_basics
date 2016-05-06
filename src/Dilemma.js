@@ -19,9 +19,11 @@ Dilemma.prototype.assignDilemma = function() {
     }, this);
 };
 Dilemma.prototype.playerChoiceFilter = function(pindex, cindex) {
-    // this.utility.filter(function(el, id, arr) {
-    // return arr.indexOf(el);
-    // });
+    if (pindex == 0) {
+        return this.p0Filter(cindex);
+    } else if (pindex == 1) {
+        return this.p1Filter(cindex);
+    }
 };
 
 Dilemma.prototype.p0Filter = function(cindex) {
