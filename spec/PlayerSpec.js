@@ -25,4 +25,11 @@ describe('Player', () => {
             myP0.setGame(g);
         });
     });
+    describe('potentialPayoffs', () => {
+        it('returns an array players payoffs based on opponents choices', function() {
+            myP0.potentialPayoffs();
+            console.log(myP0.payoffs);
+            // expect(myP0.payoffs).toBeArray();
+        });
+    });
 });

@@ -13,12 +13,13 @@ Player.prototype.setGame = function(currGame) {
     this.game = currGame;
 };
 
-Player.prototype.resume = function() {
-    if (this.isPlaying) {
-        throw new Error("song is already playing");
-    }
+Player.prototype.potentialPayoffs = function() {
+    // if (this.game) {
+    //     this.payoffs = this.game.payoffs.map(function(elem) {
+    //         return elem[this.id];
+    //     }, this);
+    // }
 
-    this.isPlaying = true;
 };
 
 Player.prototype.makeFavorite = function() {
