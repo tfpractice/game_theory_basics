@@ -1,5 +1,11 @@
 describe('Player', () => {
-    var myP0 = new Player();
+    var myP0, myP1, myDilemma;
+    beforeEach(function() {
+        myP0 = new Player(0);
+        myP1 = new Player(1);
+        myDilemma = new Dilemma(myP0, myP1);
+
+    });
     describe('init', () => {
         it('has an ID', function() {
             expect(myP0.id).toBe(0);
@@ -11,6 +17,12 @@ describe('Player', () => {
         it('has a (null)choice object', function() {
             expect(myP0.choice).toBeNull();
 
+        });
+    });
+    describe('setOpponent(opp)', () => {
+        it('sets the opponent attribute', function() {
+            myP0.setOpponent(myP1);
+            expect(myP0.opponent).toBe(myP1);
         });
     });
     describe('choose', () => {

@@ -3,7 +3,11 @@ function Player(id = 0) {
     this.choice = null;
     this.options = ['cooperate', 'defect'];
 
+
 }
+Player.prototype.setOpponent = function(opp) {
+    this.opponent = opp;
+};
 Player.prototype.choose = function(option) {
     this.choice = this.options.indexOf(option)
 
