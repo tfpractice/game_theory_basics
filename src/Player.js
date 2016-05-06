@@ -8,6 +8,7 @@ function Player(id = 0) {
 Player.prototype.setOpponent = function(opp) {
     this.opponent = opp;
 };
+
 Player.prototype.choose = function(option) {
     this.choice = this.options.indexOf(option)
 
@@ -15,6 +16,11 @@ Player.prototype.choose = function(option) {
 
 Player.prototype.setGame = function(currGame) {
     this.game = currGame;
+};
+
+Player.prototype.oppContext = function(cIndex) {
+    return this.game.playerChoiceFilter(this.opponent.id, cIndex);
+    // return [];
 };
 
 Player.prototype.potentialPayoffs = function() {

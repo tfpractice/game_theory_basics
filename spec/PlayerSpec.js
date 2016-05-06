@@ -37,8 +37,14 @@ describe('Player', () => {
             var newPlayer = new Player(2);
             newPlayer.setGame(g);
             expect(newPlayer.game).toBe(g);
-            // expect(myP0.game)
         });
+    });
+    describe('oppContext(choice)', () => {
+        it('returns a utility array based on opponents potential choice', function() {
+            console.log(myP0.oppContext(1));
+            expect(myP0.oppContext(1)).toBeArray();
+        });
+
     });
     describe('potentialPayoffs', () => {
         it('returns an array players payoffs based on opponents choices', function() {
