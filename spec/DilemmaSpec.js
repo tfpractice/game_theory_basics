@@ -30,4 +30,9 @@ describe('Dilemma', () => {
             expect(myDilemma.playerChoiceFilter(0, 1)).toBeArray();
         });
     });
+    describe('dominates()', () => {
+        it('returns whether or not one strategy yields preferable results', function() {
+            expect(myDilemma.dominates(0, 1, 0, 1, 1)).toBeTrue();
+        });
+    });
 });

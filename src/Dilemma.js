@@ -18,20 +18,25 @@ Dilemma.prototype.assignDilemma = function() {
         p.setGame(this);
     }, this);
 };
-Dilemma.prototype.playerChoiceFilter = function(pindex, cindex) {
-    if (pindex == 0) {
-        return this.p0Filter(cindex);
-    } else if (pindex == 1) {
-        return this.p1Filter(cindex);
+Dilemma.prototype.playerChoiceFilter = function(pIndex, cIndex) {
+    if (pIndex == 0) {
+        return this.p0Filter(cIndex);
+    } else if (pIndex == 1) {
+        return this.p1Filter(cIndex);
     }
 };
 
-Dilemma.prototype.p0Filter = function(cindex) {
-    return this.utility[cindex];
+Dilemma.prototype.p0Filter = function(cIndex) {
+    return this.utility[cIndex];
 };
 
-Dilemma.prototype.p1Filter = function(cindex) {
+Dilemma.prototype.p1Filter = function(cIndex) {
     return this.utility.map(function(elem) {
-        return elem[cindex];
+        return elem[cIndex];
     });
+};
+
+Dilemma.prototype.dominates = function(pIndex, strategyIndex, altIndex, oIndex, oChoice) {
+    var pcUtil = this.playerChoiceFilter(oIndex, oChoice);
+    return pcUtil[strategyIndex][pIndex] < pcUtil[altIndex][pIndex];
 };
