@@ -32,6 +32,14 @@ Player.prototype.potentialPayoffs = function(oChoice) {
 
 Player.prototype.contextDom = function(oChoice) {
     var utilties = this.potentialPayoffs(oChoice);
-    var max = Math.max(...utilties);
-    return this.options[max];
+    var min = Math.min(...utilties);
+    var bestChoice = utilties.indexOf(min);
+    // console.log(min);
+    return this.options[bestChoice];
+};
+
+Player.prototype.strictDom = function(cIndex) {
+    var cDom0 = this.contextDom(0);
+    var cDom1 = this.contextDom(1);
+    return cDom0 == cDom1;
 };

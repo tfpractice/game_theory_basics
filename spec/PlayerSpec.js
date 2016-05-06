@@ -56,7 +56,13 @@ describe('Player', () => {
     describe('contextDom(oChoice)', () => {
         it('returns the better option 	given opponents choice', function() {
             console.log(myP0.contextDom(0));
+            console.log(myP0.contextDom(1));
             expect(myP0.contextDom(0)).toBe('defect');
+        });
+    });
+    describe('strictDom(option)', () => {
+        it('returns true if a strategy always yields a preferable utility ', function() {
+            expect(myP0.strictDom(0)).toBeTrue();
         });
     });
 });
