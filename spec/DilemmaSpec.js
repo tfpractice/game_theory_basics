@@ -30,9 +30,16 @@ describe('Dilemma', () => {
             expect(myDilemma.playerChoiceFilter(0, 1)).toBeArray();
         });
     });
-    describe('dominates()', () => {
+    describe('dominates(player, choice, altChoice, opponent, opponentChoice)', () => {
         it('returns whether or not one strategy yields preferable results', function() {
             expect(myDilemma.dominates(0, 1, 0, 1, 1)).toBeTrue();
         });
+    });
+    describe('strictDominates()', () => {
+        it('retuns whether or not one strategy yeilds preferable result despite opponent choice', function() {
+            expect(myDilemma.strictDominates(0, 1, 0, 1)).toBeTrue();
+
+        });
+
     });
 });

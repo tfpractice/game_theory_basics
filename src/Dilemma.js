@@ -40,3 +40,11 @@ Dilemma.prototype.dominates = function(pIndex, strategyIndex, altIndex, oIndex, 
     var pcUtil = this.playerChoiceFilter(oIndex, oChoice);
     return pcUtil[strategyIndex][pIndex] < pcUtil[altIndex][pIndex];
 };
+
+Dilemma.prototype.strictDominates = function(pIndex, strategyIndex, altIndex, oIndex) {
+    // var domArray = [];
+    var oppFirst = this.dominates(pIndex, strategyIndex, altIndex, oIndex, 0);
+    var oppSecond = this.dominates(pIndex, strategyIndex, altIndex, oIndex, 1);
+    return oppFirst == true && oppSecond == true;
+
+};
