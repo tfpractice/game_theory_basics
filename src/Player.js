@@ -20,18 +20,18 @@ Player.prototype.setGame = function(currGame) {
 
 Player.prototype.oppContext = function(cIndex) {
     return this.game.playerChoiceFilter(this.opponent.id, cIndex);
-    // return [];
 };
 
-Player.prototype.potentialPayoffs = function() {
-    // if (this.game) {
-    //     this.payoffs = this.game.payoffs.map(function(elem) {
-    //         return elem[this.id];
-    //     }, this);
-    // }
+Player.prototype.potentialPayoffs = function(oChoice) {
+    var possibilities = this.oppContext(oChoice);
+    return possibilities.map(function(elem) {
+        return elem[this.id];
+    }, this);
 
 };
 
-Player.prototype.makeFavorite = function() {
-    this.currentlyPlayingSong.persistFavoriteStatus(true);
+Player.prototype.contextDom = function(oChoice) {
+    var utilties = this.potentialPayoffs(oChoice);
+    var max = Math.max(...utilties);
+    return this.options[max];
 };

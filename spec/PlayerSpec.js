@@ -41,16 +41,22 @@ describe('Player', () => {
     });
     describe('oppContext(choice)', () => {
         it('returns a utility array based on opponents potential choice', function() {
-            console.log(myP0.oppContext(1));
-            expect(myP0.oppContext(1)).toBeArray();
+            console.log(myP0.oppContext(0));
+            expect(myP0.oppContext(0)).toBeArray();
         });
 
     });
     describe('potentialPayoffs', () => {
         it('returns an array players payoffs based on opponents choices', function() {
-            myP0.potentialPayoffs();
-            console.log(myP0.payoffs);
-            // expect(myP0.payoffs).toBeArray();
+            // myP0.potentialPayoffs(0);
+            console.log(myP0.potentialPayoffs(0));
+            expect(myP0.potentialPayoffs(0)).toBeArray();
+        });
+    });
+    describe('contextDom(oChoice)', () => {
+        it('returns the better option 	given opponents choice', function() {
+            console.log(myP0.contextDom(0));
+            expect(myP0.contextDom(0)).toBe('defect');
         });
     });
 });
