@@ -27,3 +27,9 @@ Dilemma.prototype.playerChoiceFilter = function(pindex, cindex) {
 Dilemma.prototype.p0Filter = function(cindex) {
     return this.utility[cindex];
 };
+
+Dilemma.prototype.p1Filter = function(cindex) {
+    return this.utility.map(function(elem) {
+        return elem[cindex];
+    });
+};
