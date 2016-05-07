@@ -75,4 +75,11 @@ describe('Player', () => {
             expect(myP0.strictDom(0)).toBeTrue();
         });
     });
+    describe('setStrategies', () => {
+        it('appends the best option to the bestChoices array', function() {
+            myP0.setStrategies();
+            console.log(myP0.bestChoices);
+            expect(myP0.bestChoices.length).toBe(2);
+        });
+    });
 });

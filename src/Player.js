@@ -38,7 +38,6 @@ Player.prototype.contextDom = function(oChoice) {
     var utilties = this.potentialPayoffs(oChoice);
     var min = Math.min(...utilties);
     var bestChoice = utilties.indexOf(min);
-    // console.log(min);
     return this.options[bestChoice];
 };
 
@@ -46,4 +45,9 @@ Player.prototype.strictDom = function(cIndex) {
     var cDom0 = this.contextDom(0);
     var cDom1 = this.contextDom(1);
     return cDom0 == cDom1;
+};
+Player.prototype.setStrategies = function() {
+    this.options.forEach(function(choice, cIndex) {
+        this.bestChoices[cIndex] = this.contextDom(cIndex);
+    }, this);
 };
