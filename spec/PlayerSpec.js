@@ -16,7 +16,15 @@ describe('Player', () => {
         });
         it('has a (null)choice object', function() {
             expect(myP0.choice).toBeNull();
-
+        });
+        it('has a strict array', function() {
+            expect(myP0.strict).toBeArray();
+        });
+        it('has a weak array', function() {
+            expect(myP0.weak).toBeArray();
+        });
+        it('has a dominated array', function() {
+            expect(myP0.dominated).toBeArray();
         });
     });
     describe('setOpponent(opp)', () => {
@@ -48,7 +56,6 @@ describe('Player', () => {
     });
     describe('potentialPayoffs', () => {
         it('returns an array players payoffs based on opponents choices', function() {
-            // myP0.potentialPayoffs(0);
             console.log(myP0.potentialPayoffs(0));
             expect(myP0.potentialPayoffs(0)).toBeArray();
         });
