@@ -5,6 +5,7 @@ function Player(id = 0) {
     this.strict = [];
     this.weak = [];
     this.dominated = [];
+    this.bestChoices = [];
 
 
 }

@@ -26,6 +26,9 @@ describe('Player', () => {
         it('has a dominated array', function() {
             expect(myP0.dominated).toBeArray();
         });
+        it('has a bestChoices array', function() {
+            expect(myP0.bestChoices).toBeArray();
+        });
     });
     describe('setOpponent(opp)', () => {
         it('sets the opponent attribute', function() {
