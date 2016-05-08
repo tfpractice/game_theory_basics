@@ -29,6 +29,9 @@ describe('Player', () => {
         it('has a bestChoices array', function() {
             expect(myP0.bestChoices).toBeArray();
         });
+        it('has a strategies objects', function() {
+            expect(myP0.strategies).toBeObject();
+        });
     });
     describe('setOpponent(opp)', () => {
         it('sets the opponent attribute', function() {
@@ -72,8 +75,20 @@ describe('Player', () => {
     });
     describe('strictDom(option)', () => {
         it('returns true if a strategy always yields a preferable utility ', function() {
-            expect(myP0.strictDom(0)).toBeTrue();
+            expect(myP0.strictDom(0, 1)).toBeTrue();
         });
+    });
+    describe('conDom(context, cIndex, altIndex)', () => {
+        it('returns true if strategy cIndexis preferable to altIndex whem oppnonent choose context', function() {
+            expect(myP0.conDom(1, 0, 1)).toBeTrue();
+
+        });
+        it('returns false if strategy cIndexis preferable to altIndex whem oppnonent choose context', function() {
+            expect(myP0.conDom(1, 1, 0)).toBeFalse();
+        });
+    });
+    describe('SDom', () => {
+
     });
     describe('setStrategies', () => {
         it('appends the best option to the bestChoices array', function() {
