@@ -39,8 +39,8 @@ Player.prototype.setGame = function(currGame) {
     this.game = currGame;
 };
 
-Player.prototype.oppContext = function(cIndex) {
-    return this.game.playerChoiceFilter(this.opponent.id, cIndex);
+Player.prototype.oppContext = function(oChoice) {
+    return this.game.playerChoiceFilter(this.opponent.id, oChoice);
 };
 
 Player.prototype.potentialPayoffs = function(oChoice) {
@@ -51,10 +51,11 @@ Player.prototype.potentialPayoffs = function(oChoice) {
 
 };
 
-Player.prototype.extractUtilities = function(oChoice, cIndex, altIndex) {
+Player.prototype.extractUtilities = function(oChoice, choice, alt) {
     var utilties = this.potentialPayoffs(oChoice);
-    var cUtil = utilties[cIndex];
-    var altUtil = utilties[altIndex];
+    //console.log(utilties);
+    var cUtil = utilties[this.options.indexOf(choice)];
+    var altUtil = utilties[this.options.indexOf(alt)];
     return [cUtil, altUtil];
 };
 Player.prototype.contextDom = function(oChoice) {
@@ -63,17 +64,20 @@ Player.prototype.contextDom = function(oChoice) {
     // var cUtil = utilties[cIndex];
     // var altUtil = utilties[altIndex];
     var min = Math.min(...utilties);
+    //console.log(utilties);
     var bestChoice = utilties.indexOf(min);
+    //console.log(bestChoice);
+
     return this.options[bestChoice];
 };
 
-Player.prototype.conDom = function(oChoice, cIndex, altIndex) {
-    var utilSet = this.extractUtilities(oChoice, cIndex, altIndex);
-    return utilSet[0] > utilSet[1];
+Player.prototype.conDom = function(oChoice, choice, alt) {
+    var utilSet = this.extractUtilities(oChoice, choice, alt);
+    return utilSet[0] < utilSet[1];
 };
-Player.prototype.strictDom = function(cIndex, altIndex) {
-    var cDom0 = this.contextDom(0);
-    var cDom1 = this.contextDom(1);
+Player.prototype.strictDom = function(choice, altIndex) {
+    var cDom0 = this.contextDom('cooperate');
+    var cDom1 = this.contextDom('defect');
     return cDom0 == cDom1;
 };
 

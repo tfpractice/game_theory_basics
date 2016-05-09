@@ -53,24 +53,24 @@ describe('Player', () => {
             expect(newPlayer.game).toBe(g);
         });
     });
-    describe('oppContext(choice)', () => {
+    describe('oppContext(oChoice)', () => {
         it('returns a utility array based on opponents potential choice', function() {
-            console.log(myP0.oppContext(0));
-            expect(myP0.oppContext(0)).toBeArray();
+            console.log(myP0.oppContext('cooperate'));
+            expect(myP0.oppContext('cooperate')).toBeArray();
         });
 
     });
     describe('potentialPayoffs', () => {
         it('returns an array players payoffs based on opponents choices', function() {
-            console.log(myP0.potentialPayoffs(0));
-            expect(myP0.potentialPayoffs(0)).toBeArray();
+            console.log(myP0.potentialPayoffs('cooperate'));
+            expect(myP0.potentialPayoffs('cooperate')).toBeArray();
         });
     });
     describe('contextDom(oChoice)', () => {
         it('returns the better option 	given opponents choice', function() {
-            console.log(myP0.contextDom(0));
-            console.log(myP0.contextDom(1));
-            expect(myP0.contextDom(0)).toBe('defect');
+            console.log(myP0.contextDom('cooperate'));
+            console.log(myP0.contextDom('defect'));
+            expect(myP0.contextDom('cooperate')).toBe('defect');
         });
     });
     describe('strictDom(option)', () => {
@@ -78,13 +78,14 @@ describe('Player', () => {
             expect(myP0.strictDom(0, 1)).toBeTrue();
         });
     });
-    describe('conDom(context, cIndex, altIndex)', () => {
-        it('returns true if strategy cIndexis preferable to altIndex whem oppnonent choose context', function() {
-            expect(myP0.conDom(1, 0, 1)).toBeTrue();
+    describe('conDom(oChoice, choice, alt)', () => {
+        it('returns true if choice is preferable to alt whem oppnonent choose context', function() {
+            expect(myP0.conDom('defect', 'defect', 'cooperate')).toBeTrue();
 
         });
-        it('returns false if strategy cIndexis preferable to altIndex whem oppnonent choose context', function() {
-            expect(myP0.conDom(1, 1, 0)).toBeFalse();
+        it('returns false if strategy choice preferable to alt when oppnonent choose context', function() {
+            expect(myP0.conDom('defect', 'cooperate', 'defect')).toBeFalse();
+
         });
     });
     describe('SDom', () => {

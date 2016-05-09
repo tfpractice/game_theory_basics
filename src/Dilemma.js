@@ -33,35 +33,35 @@ Dilemma.prototype.assignDilemma = function() {
         p.setGame(this);
     }, this);
 };
-Dilemma.prototype.playerChoiceFilter = function(pIndex, cIndex) {
+Dilemma.prototype.playerChoiceFilter = function(pIndex, choice) {
     if (pIndex == 0) {
-        return this.p0Filter(cIndex);
+        return this.p0Filter(choice);
     } else if (pIndex == 1) {
-        return this.p1Filter(cIndex);
+        return this.p1Filter(choice);
     }
 };
 
-Dilemma.prototype.p0Filter = function(cIndex) {
-    return this.utility[cIndex];
+Dilemma.prototype.p0Filter = function(choice) {
+    return this.utility[this.cIndex(choice)];
 };
 Dilemma.prototype.cIndex = function(choice) {
     return this.options.indexOf(choice);
 };
-Dilemma.prototype.p1Filter = function(cIndex) {
+Dilemma.prototype.p1Filter = function(choice) {
     return this.utility.map(function(elem) {
-        return elem[cIndex];
-    });
+        return elem[this.cIndex(choice)];
+    }, this);
 };
 
-Dilemma.prototype.dominates = function(pIndex, strategyIndex, altIndex, oIndex, oChoice) {
+Dilemma.prototype.dominates = function(pIndex, choice, alt, oIndex, oChoice) {
     var pcUtil = this.playerChoiceFilter(oIndex, oChoice);
-    return pcUtil[strategyIndex][pIndex] < pcUtil[altIndex][pIndex];
+    return pcUtil[this.cIndex(choice)][pIndex] < pcUtil[this.cIndex(alt)][pIndex];
 };
 
-Dilemma.prototype.strictDominates = function(pIndex, strategyIndex, altIndex, oIndex) {
+Dilemma.prototype.strictDominates = function(pIndex, choice, alt, oIndex) {
     // var domArray = [];
-    var oppFirst = this.dominates(pIndex, strategyIndex, altIndex, oIndex, 0);
-    var oppSecond = this.dominates(pIndex, strategyIndex, altIndex, oIndex, 1);
+    var oppFirst = this.dominates(pIndex, choice, alt, oIndex, 'cooperate');
+    var oppSecond = this.dominates(pIndex, choice, alt, oIndex, 'defect');
     return oppFirst == true && oppSecond == true;
 
 };
