@@ -2,6 +2,7 @@ function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
     this.players = [p0, p1];
     this.players[0].setOpponent(this.players[1]);
     this.players[1].setOpponent(this.players[0]);
+    this.options = ['cooperate', 'defect'];
     this.utility = [
         [
             [1, 1],
@@ -12,6 +13,18 @@ function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
             [6, 6]
         ]
     ];
+
+    this.uMat = {
+        'cooperate': {
+            'cooperate': [1, 1],
+            'defect': [12, 0],
+        },
+        'defect': {
+            'cooperate': [0, 12],
+            'defect': [6, 6]
+        },
+
+    };
     this.assignDilemma();
 }
 
@@ -27,7 +40,9 @@ Dilemma.prototype.playerChoiceFilter = function(pIndex, cIndex) {
         return this.p1Filter(cIndex);
     }
 };
-
+Dilemma.prototype.pIndex = function(player) {
+    return this.players.indexOf(player);
+};
 Dilemma.prototype.p0Filter = function(cIndex) {
     return this.utility[cIndex];
 };

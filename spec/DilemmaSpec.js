@@ -17,6 +17,13 @@ describe('Dilemma', () => {
             expect(myDilemma.players[0].game).toBe(myDilemma);
         });
     });
+    describe('pIndex(player)', () => {
+        it('retuns the index of the player', function() {
+            var p0 = myDilemma.players[0];
+            expect(myDilemma.pIndex(p0)).toBe(0);
+
+        });
+    });
     describe('p0Filter(cIndex)', () => {
         it('returns utilities array based on p0s(row) choice index ', function() {
             // console.log(myDilemma.p0Filter(1));
