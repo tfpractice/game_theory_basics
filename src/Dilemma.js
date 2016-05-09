@@ -40,13 +40,13 @@ Dilemma.prototype.playerChoiceFilter = function(pIndex, cIndex) {
         return this.p1Filter(cIndex);
     }
 };
-Dilemma.prototype.pIndex = function(player) {
-    return this.players.indexOf(player);
-};
+
 Dilemma.prototype.p0Filter = function(cIndex) {
     return this.utility[cIndex];
 };
-
+Dilemma.prototype.cIndex = function(choice) {
+    return this.options.indexOf(choice);
+};
 Dilemma.prototype.p1Filter = function(cIndex) {
     return this.utility.map(function(elem) {
         return elem[cIndex];

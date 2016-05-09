@@ -1,7 +1,10 @@
 describe('Dilemma', () => {
-    var myDilemma;
+    var myDilemma, p0, p1;
     beforeEach(function() {
         myDilemma = new Dilemma();
+        p0 = myDilemma.players[0];
+        p1 = myDilemma.players[1];
+
     });
     describe('init', () => {
         it('has a players array', function() {
@@ -17,11 +20,10 @@ describe('Dilemma', () => {
             expect(myDilemma.players[0].game).toBe(myDilemma);
         });
     });
-    describe('pIndex(player)', () => {
-        it('retuns the index of the player', function() {
-            var p0 = myDilemma.players[0];
-            expect(myDilemma.pIndex(p0)).toBe(0);
-
+    describe('cIndex(choice)', () => {
+        it('retuns the index of the choice', function() {
+            // var p0 = myDilemma.players[0];
+            expect(myDilemma.cIndex('cooperate')).toBe(0);
         });
     });
     describe('p0Filter(cIndex)', () => {
@@ -35,7 +37,7 @@ describe('Dilemma', () => {
             expect(myDilemma.p1Filter(0)).toBeArray();
         });
     });
-    describe('playerChoiceFilter(pIndex, cIndex)', () => {
+    describe('playerChoiceFilter(player, cIndex)', () => {
         it('returns the proper utility based on the given player and choice', function() {
             expect(myDilemma.playerChoiceFilter(0, 1)).toBeArray();
         });
