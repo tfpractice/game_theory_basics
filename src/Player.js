@@ -20,7 +20,7 @@ function Player(id = 0) {
 Player.prototype.updateStrategies = function() {
     this.options.forEach(function(el) {
         this.strategies[el];
-    })
+    }, this);
 };
 
 Player.prototype.uStrat = function(strat, oChoice) {
@@ -40,11 +40,23 @@ Player.prototype.setGame = function(currGame) {
 };
 
 Player.prototype.oppContext = function(oChoice) {
+    // adjust
+    console.log(this.game.contextUtil(this.opponent, oChoice));
     return this.game.playerChoiceFilter(this.opponent.id, oChoice);
+};
+Player.prototype.oC = function(oChoice) {
+    return (this.game.contextUtil(this.opponent, oChoice));
 };
 
 Player.prototype.potentialPayoffs = function(oChoice) {
     var possibilities = this.oppContext(oChoice);
+    var poss = this.oC(oChoice);
+    // adjust
+    var rs = {};
+    Object.keys(poss).forEach(function(key) {
+        rs[key] = poss[key][this.id];
+    }, this);
+    console.log('rs', rs);
     return possibilities.map(function(elem) {
         return elem[this.id];
     }, this);
