@@ -74,4 +74,9 @@ describe('Dilemma', () => {
 
         });
     });
+    describe('contextUtil(player, choice)', () => {
+        it('returns an array of strategies based on opponenets choice', function() {
+            expect(myDilemma.contextUtil(p1, 'defect')).toBeObject();
+        });
+    });
 });
