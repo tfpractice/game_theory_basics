@@ -55,21 +55,21 @@ describe('Player', () => {
     });
     describe('oppContext(oChoice)', () => {
         it('returns a utility array based on opponents potential choice', function() {
-            console.log(myP0.oppContext('cooperate'));
+            //console.log(myP0.oppContext('cooperate'));
             expect(myP0.oppContext('cooperate')).toBeArray();
         });
 
     });
     describe('potentialPayoffs', () => {
         it('returns an array players payoffs based on opponents choices', function() {
-            console.log(myP0.potentialPayoffs('cooperate'));
+            //console.log(myP0.potentialPayoffs('cooperate'));
             expect(myP0.potentialPayoffs('cooperate')).toBeArray();
         });
     });
     describe('contextDom(oChoice)', () => {
         it('returns the better option 	given opponents choice', function() {
-            console.log(myP0.contextDom('cooperate'));
-            console.log(myP0.contextDom('defect'));
+            //console.log(myP0.contextDom('cooperate'));
+            //console.log(myP0.contextDom('defect'));
             expect(myP0.contextDom('cooperate')).toBe('defect');
         });
     });
@@ -93,9 +93,9 @@ describe('Player', () => {
     });
     describe('setStrategies', () => {
         it('appends the best option to the bestChoices array', function() {
-            myP0.setStrategies();
-            console.log(myP0.bestChoices);
-            expect(myP0.bestChoices.length).toBe(2);
+            // myP0.setStrategies();
+            // //console.log(myP0.bestChoices);
+            // expect(myP0.bestChoices.length).toBe(2);
         });
     });
 });

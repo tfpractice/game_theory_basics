@@ -28,7 +28,7 @@ describe('Dilemma', () => {
     });
     describe('p0Filter(choice)', () => {
         it('returns utilities array based on p0s(row) choice index ', function() {
-            // console.log(myDilemma.p0Filter(1));
+            // //console.log(myDilemma.p0Filter(1));
             expect(myDilemma.p0Filter('cooperate')).toBeArray();
         });
     });
@@ -50,8 +50,28 @@ describe('Dilemma', () => {
     describe('strictDominates()', () => {
         it('retuns whether or not one strategy yeilds preferable result despite opponent choice', function() {
             expect(myDilemma.strictDominates(0, 'defect', 'cooperate', 1)).toBeTrue();
-
         });
 
+    });
+    describe('uMat', () => {
+        it('is a labeled matirx of utilities', function() {
+            expect(myDilemma.uMat).toBeObject();
+        });
+    });
+    describe('f0(choice)', () => {
+        it('retuns the uMat utility values based on player0s choice', function() {
+            console.log('f0')
+            console.log(myDilemma.f0('defect'));
+
+            expect(myDilemma.f0('defect')).toBeObject();
+        });
+    });
+    describe('f1(choice)', () => {
+        it('filters the uMat based on player 1s choice ', function() {
+            console.log('f1');
+            console.log(myDilemma.f1('defect'));
+            expect(myDilemma.f1('defect')).toBeObject();
+
+        });
     });
 });

@@ -44,6 +44,22 @@ Dilemma.prototype.playerChoiceFilter = function(pIndex, choice) {
 Dilemma.prototype.p0Filter = function(choice) {
     return this.utility[this.cIndex(choice)];
 };
+Dilemma.prototype.f0 = function(choice) {
+    return this.uMat[choice];
+};
+Dilemma.prototype.f1 = function(choice) {
+    var result = {};
+    // result[]
+    Object.keys(this.uMat).forEach(function(elem) {
+        result[elem] = this.uMat[elem][choice]
+        // return this.uMat[elem][choice];
+    }, this);
+    console.log(result);
+    return result;
+    // return Object.keys(this.uMat).map(function(elem) {
+    //     return this.uMat[elem][choice];
+    // }, this);
+};
 Dilemma.prototype.cIndex = function(choice) {
     return this.options.indexOf(choice);
 };
