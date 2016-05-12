@@ -57,16 +57,15 @@ Player.prototype.bestOptions = function(oChoice) {
         uArray.push(pp[key]);
         return uArray;
     }, []);
-    var bestChoice = Math.min(...uA);
+    var bestChoice = Math.max(...uA);
     return Object.keys(pp).filter(function(key) {
         return pp[key] == bestChoice;
     }, this);
 };
 
-
 Player.prototype.preferred = function(oChoice, choice, alt) {
     var utilSet = this.contextUtil(oChoice, choice, alt);
-    return utilSet[choice] < utilSet[alt];
+    return utilSet[choice] > utilSet[alt];
 };
 
 Player.prototype.strictDom = function(choice, alt) {
