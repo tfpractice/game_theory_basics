@@ -4,7 +4,6 @@ describe('Player', () => {
         myP0 = new Player(0);
         myP1 = new Player(1);
         myDilemma = new Dilemma(myP0, myP1);
-
     });
     describe('init', () => {
         it('has an ID', function() {
@@ -12,7 +11,6 @@ describe('Player', () => {
         });
         it('has an options array', function() {
             expect(myP0.options).toBeArray();
-
         });
         it('has a (null)choice object', function() {
             expect(myP0.choice).toBeNull();
@@ -54,67 +52,40 @@ describe('Player', () => {
         });
     });
     describe('oppContext(oChoice)', () => {
-        it('returns a utility array based on opponents potential choice', function() {
-            //console.log(myP0.oppContext('cooperate'));
-
-            // expect(myP0.oppContext('cooperate')).toBeArray();
-        });
-        it('returns a key value store of strategies and utilities', function() {
+        it('returns a strategy-utility key-value store', function() {
             expect(myP0.oC('defect')).toBeObject();
         });
-
     });
-    describe('potentialPayoffs', () => {
+    describe('contextUtil', () => {
         it('returns an array players payoffs based on opponents choices', function() {
-            //console.log(myP0.potentialPayoffs('cooperate'));
-            expect(myP0.potentialPayoffs('cooperate')).toBeArray();
+            expect(myP0.contextUtil('cooperate')).toBeObject();
         });
     });
-    describe('contextDom(oChoice)', () => {
-        it('returns the better option 	given opponents choice', function() {
-            //console.log(myP0.contextDom('cooperate'));
-            //console.log(myP0.contextDom('defect'));
-            expect(myP0.contextDom('cooperate')).toBe('defect');
+    describe('bestOptions(oChoice)', () => {
+        it('retuns the optimal strategy given an opponents choice', function() {
+            expect(myP0.bestOptions("cooperate")).toContain("defect");
         });
     });
     describe('strictDom(option)', () => {
         it('returns true if a strategy always yields a preferable utility ', function() {
-            expect(myP0.strictDom(0, 1)).toBeTrue();
+            expect(myP0.strictDom('defect', 'cooperate')).toBeTrue();
         });
     });
-    describe('conDom(oChoice, choice, alt)', () => {
+    describe('preferred(oChoice, choice, alt)', () => {
         it('returns true if choice is preferable to alt whem oppnonent choose context', function() {
-            expect(myP0.conDom('defect', 'defect', 'cooperate')).toBeTrue();
-
+            expect(myP0.preferred('defect', 'defect', 'cooperate')).toBeTrue();
         });
         it('returns false if strategy choice preferable to alt when oppnonent choose context', function() {
-            expect(myP0.conDom('defect', 'cooperate', 'defect')).toBeFalse();
-
+            expect(myP0.preferred('defect', 'cooperate', 'defect')).toBeFalse();
         });
     });
-    describe('SDom', () => {
-
-    });
+    describe('SDom', () => {});
     describe('setStrategies', () => {
-        it('appends the best option to the bestChoices array', function() {
-            // myP0.setStrategies();
-            // //console.log(myP0.bestChoices);
-            // expect(myP0.bestChoices.length).toBe(2);
-        });
+        it('appends the best option to the bestChoices array', function() {});
     });
     describe('oC(oChoice)', () => {
         it('returns a key value store of strategies and utilities', function() {
             expect(myP0.oC('defect')).toBeObject();
-        });
-    });
-    describe('contextUtil(oChoice)', () => {
-        it('returns the strategy-payoff key/value store for the player', function() {
-            expect(myP0.contextUtil('defect')).toBeObject();
-        });
-    });
-    describe('optimalStrategy(oChoice)', () => {
-        it('retuns the optimal strategy given an opponents choice', function() {
-            expect(myP0.optimalStrategy('cooperate')).toBe('defect');
         });
     });
 });

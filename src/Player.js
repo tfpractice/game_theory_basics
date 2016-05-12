@@ -14,9 +14,8 @@ function Player(id = 0) {
     this.weak = [];
     this.dominated = [];
     this.bestChoices = [];
-
-
 }
+
 Player.prototype.updateStrategies = function() {
     this.options.forEach(function(el) {
         this.strategies[el];
@@ -26,13 +25,13 @@ Player.prototype.updateStrategies = function() {
 Player.prototype.uStrat = function(strat, oChoice) {
     this.strategies[strat]['']
 };
+
 Player.prototype.setOpponent = function(opp) {
     this.opponent = opp;
 };
 
 Player.prototype.choose = function(option) {
     this.choice = this.options.indexOf(option)
-
 };
 
 Player.prototype.setGame = function(currGame) {
@@ -40,89 +39,55 @@ Player.prototype.setGame = function(currGame) {
 };
 
 Player.prototype.oppContext = function(oChoice) {
-    // adjust
-    // console.log(this.game.contextUtil(this.opponent, oChoice));
-    // return (this.game.contextUtil(this.opponent, oChoice));
-
+    return (this.game.contextUtil(this.opponent, oChoice));
     return this.game.playerChoiceFilter(this.opponent.id, oChoice);
 };
+
 Player.prototype.oC = function(oChoice) {
     return (this.game.contextUtil(this.opponent, oChoice));
 };
+
 Player.prototype.contextUtil = function(oChoice) {
     var poss = this.oC(oChoice);
-    // var rs = {};
-    // Object.keys(poss).forEach(function(key) {
-    //     rs[key] = poss[key][this.id];
-    // }, this);
     var index = this.id;
-    // console.log('rs', rs);
-    // console.log('poss', poss);
     return Object.keys(poss).reduce(function(util, key) {
         util[key] = poss[key][index];
         return util;
     }, {});
-
-    // console.log('reduced', reduced);
-    // return reduced;
 };
-Player.prototype.optimalStrategy = function(oChoice) {
+
+Player.prototype.bestOptions = function(oChoice) {
     var pp = this.contextUtil(oChoice);
-    var pArray = [];
-    Object.keys(pp).forEach(function(key) {
-        return pArray.push(pp[key]);
-    }, this);
-    var bestChoice = Math.min(...pArray);
+    var uA = Object.keys(pp).reduce(function(uArray, key) {
+        uArray.push(pp[key]);
+        return uArray;
+    }, []);
+    var bestChoice = Math.min(...uA);
     return Object.keys(pp).filter(function(key) {
         return pp[key] == bestChoice;
-    }, this).shift();
-};
-Player.prototype.potentialPayoffs = function(oChoice) {
-    var possibilities = this.oppContext(oChoice);
-
-    return possibilities.map(function(elem) {
-        return elem[this.id];
     }, this);
-
 };
 
 Player.prototype.extractUtilities = function(oChoice, choice, alt) {
-    var utilties = this.potentialPayoffs(oChoice);
-    //console.log(utilties);
+    var utilties = this.contextUtil(oChoice);
     var cUtil = utilties[this.options.indexOf(choice)];
     var altUtil = utilties[this.options.indexOf(alt)];
     return [cUtil, altUtil];
 };
-Player.prototype.contextDom = function(oChoice) {
-    // var utilties = this.extractUtilities(oChoice, cIndex, altIndex);
-    var utilties = this.potentialPayoffs(oChoice);
-    // var cUtil = utilties[cIndex];
-    // var altUtil = utilties[altIndex];
-    var min = Math.min(...utilties);
-    //console.log(utilties);
-    var bestChoice = utilties.indexOf(min);
-    //console.log(bestChoice);
 
-    return this.options[bestChoice];
+Player.prototype.preferred = function(oChoice, choice, alt) {
+    var utilSet = this.contextUtil(oChoice, choice, alt);
+    return utilSet[choice] < utilSet[alt];
 };
 
-Player.prototype.conDom = function(oChoice, choice, alt) {
-    var utilSet = this.extractUtilities(oChoice, choice, alt);
-    return utilSet[0] < utilSet[1];
-};
-Player.prototype.strictDom = function(choice, altIndex) {
-    var cDom0 = this.contextDom('cooperate');
-    var cDom1 = this.contextDom('defect');
-    return cDom0 == cDom1;
-};
-
-Player.prototype.sDom = function(cIndex, altIndex) {
-    this.options.all(function(context) {
-        return this.conDom(context, cIndex, altIndex) == true;
+Player.prototype.strictDom = function(choice, alt) {
+    return this.options.every(function(context) {
+        return this.preferred(context, choice, alt) == true;
     }, this);
 };
+
 Player.prototype.setStrategies = function() {
-    this.options.forEach(function(choice, cIndex) {
-        this.bestChoices[cIndex] = this.contextDom(cIndex);
+    this.options.forEach(function(choice, choice) {
+        this.bestChoices[choice] = this.bestOptions(choice);
     }, this);
 };
