@@ -40,7 +40,6 @@ Player.prototype.setGame = function(currGame) {
 
 Player.prototype.oppContext = function(oChoice) {
     return (this.game.contextUtil(this.opponent, oChoice));
-    return this.game.playerChoiceFilter(this.opponent.id, oChoice);
 };
 
 Player.prototype.oC = function(oChoice) {

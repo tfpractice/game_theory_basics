@@ -83,9 +83,5 @@ describe('Player', () => {
     describe('setStrategies', () => {
         it('appends the best option to the bestChoices array', function() {});
     });
-    describe('oC(oChoice)', () => {
-        it('returns a key value store of strategies and utilities', function() {
-            expect(myP0.oC('defect')).toBeObject();
-        });
-    });
+
 });
