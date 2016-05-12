@@ -56,7 +56,11 @@ describe('Player', () => {
     describe('oppContext(oChoice)', () => {
         it('returns a utility array based on opponents potential choice', function() {
             //console.log(myP0.oppContext('cooperate'));
-            expect(myP0.oppContext('cooperate')).toBeArray();
+
+            // expect(myP0.oppContext('cooperate')).toBeArray();
+        });
+        it('returns a key value store of strategies and utilities', function() {
+            expect(myP0.oC('defect')).toBeObject();
         });
 
     });
@@ -96,6 +100,21 @@ describe('Player', () => {
             // myP0.setStrategies();
             // //console.log(myP0.bestChoices);
             // expect(myP0.bestChoices.length).toBe(2);
+        });
+    });
+    describe('oC(oChoice)', () => {
+        it('returns a key value store of strategies and utilities', function() {
+            expect(myP0.oC('defect')).toBeObject();
+        });
+    });
+    describe('contextUtil(oChoice)', () => {
+        it('returns the strategy-payoff key/value store for the player', function() {
+            expect(myP0.contextUtil('defect')).toBeObject();
+        });
+    });
+    describe('optimalStrategy(oChoice)', () => {
+        it('retuns the optimal strategy given an opponents choice', function() {
+            expect(myP0.optimalStrategy('cooperate')).toBe('defect');
         });
     });
 });

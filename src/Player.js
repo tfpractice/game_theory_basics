@@ -41,22 +41,45 @@ Player.prototype.setGame = function(currGame) {
 
 Player.prototype.oppContext = function(oChoice) {
     // adjust
-    console.log(this.game.contextUtil(this.opponent, oChoice));
+    // console.log(this.game.contextUtil(this.opponent, oChoice));
+    // return (this.game.contextUtil(this.opponent, oChoice));
+
     return this.game.playerChoiceFilter(this.opponent.id, oChoice);
 };
 Player.prototype.oC = function(oChoice) {
     return (this.game.contextUtil(this.opponent, oChoice));
 };
+Player.prototype.contextUtil = function(oChoice) {
+    var poss = this.oC(oChoice);
+    // var rs = {};
+    // Object.keys(poss).forEach(function(key) {
+    //     rs[key] = poss[key][this.id];
+    // }, this);
+    var index = this.id;
+    // console.log('rs', rs);
+    // console.log('poss', poss);
+    return Object.keys(poss).reduce(function(util, key) {
+        util[key] = poss[key][index];
+        return util;
+    }, {});
 
+    // console.log('reduced', reduced);
+    // return reduced;
+};
+Player.prototype.optimalStrategy = function(oChoice) {
+    var pp = this.contextUtil(oChoice);
+    var pArray = [];
+    Object.keys(pp).forEach(function(key) {
+        return pArray.push(pp[key]);
+    }, this);
+    var bestChoice = Math.min(...pArray);
+    return Object.keys(pp).filter(function(key) {
+        return pp[key] == bestChoice;
+    }, this).shift();
+};
 Player.prototype.potentialPayoffs = function(oChoice) {
     var possibilities = this.oppContext(oChoice);
-    var poss = this.oC(oChoice);
-    // adjust
-    var rs = {};
-    Object.keys(poss).forEach(function(key) {
-        rs[key] = poss[key][this.id];
-    }, this);
-    console.log('rs', rs);
+
     return possibilities.map(function(elem) {
         return elem[this.id];
     }, this);
