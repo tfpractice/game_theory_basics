@@ -42,12 +42,8 @@ Player.prototype.oppContext = function(oChoice) {
     return (this.game.contextUtil(this.opponent, oChoice));
 };
 
-Player.prototype.oC = function(oChoice) {
-    return (this.game.contextUtil(this.opponent, oChoice));
-};
-
 Player.prototype.contextUtil = function(oChoice) {
-    var poss = this.oC(oChoice);
+    var poss = this.oppContext(oChoice);
     var index = this.id;
     return Object.keys(poss).reduce(function(util, key) {
         util[key] = poss[key][index];
@@ -67,12 +63,12 @@ Player.prototype.bestOptions = function(oChoice) {
     }, this);
 };
 
-Player.prototype.extractUtilities = function(oChoice, choice, alt) {
-    var utilties = this.contextUtil(oChoice);
-    var cUtil = utilties[this.options.indexOf(choice)];
-    var altUtil = utilties[this.options.indexOf(alt)];
-    return [cUtil, altUtil];
-};
+// Player.prototype.extractUtilities = function(oChoice, choice, alt) {
+//     var utilties = this.contextUtil(oChoice);
+//     var cUtil = utilties[this.options.indexOf(choice)];
+//     var altUtil = utilties[this.options.indexOf(alt)];
+//     return [cUtil, altUtil];
+// };
 
 Player.prototype.preferred = function(oChoice, choice, alt) {
     var utilSet = this.contextUtil(oChoice, choice, alt);

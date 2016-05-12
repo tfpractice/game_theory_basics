@@ -53,7 +53,7 @@ describe('Player', () => {
     });
     describe('oppContext(oChoice)', () => {
         it('returns a strategy-utility key-value store', function() {
-            expect(myP0.oC('defect')).toBeObject();
+            expect(myP0.oppContext('defect')).toBeObject();
         });
     });
     describe('contextUtil', () => {
