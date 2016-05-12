@@ -72,14 +72,13 @@ describe('Player', () => {
         });
     });
     describe('preferred(oChoice, choice, alt)', () => {
-        it('returns true if choice is preferable to alt whem oppnonent choose context', function() {
+        it('returns true if choice is preferable to alt given opponents choice', function() {
             expect(myP0.preferred('defect', 'defect', 'cooperate')).toBeTrue();
         });
-        it('returns false if strategy choice preferable to alt when oppnonent choose context', function() {
+        it('returns false if strategy choice is not preferable to alt given opponents choice', function() {
             expect(myP0.preferred('defect', 'cooperate', 'defect')).toBeFalse();
         });
     });
-    describe('SDom', () => {});
     describe('setStrategies', () => {
         it('appends the best option to the bestChoices array', function() {});
     });
