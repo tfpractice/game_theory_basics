@@ -56,4 +56,9 @@ describe('SquareGame', () => {
         });
 
     });
+    describe('contextUtil(player, choice)', () => {
+        it('returns an array of strategies based on opponenets choice', function() {
+            expect(myGame.contextUtil(p1, 'left')).toBeObject();
+        });
+    });
 });
