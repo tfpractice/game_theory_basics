@@ -30,6 +30,9 @@ Player.prototype.setOpponent = function(opp) {
     this.opponent = opp;
 };
 
+Player.prototype.setOptions = function(opts = []) {
+    this.options = opts;
+};
 Player.prototype.choose = function(option) {
     this.choice = this.options.indexOf(option)
 };

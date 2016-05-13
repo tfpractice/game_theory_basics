@@ -37,6 +37,11 @@ describe('Player', () => {
             expect(myP0.opponent).toBe(myP1);
         });
     });
+    describe('setOptions', () => {
+        it('assigns an array of strategies from the game ', function() {
+            expect(myP0.options).toBeArray();
+        });
+    });
     describe('choose', () => {
         it('assigns the players choice value', function() {
             myP0.choose('defect');
