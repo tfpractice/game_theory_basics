@@ -1,0 +1,8 @@
+describe('SquareGame', () => {
+    var myGame, p0, p1;
+    beforeEach(function() {
+        myGame = new SquareGame();
+        p0 = myGame.players[0];
+        p1 = myGame.players[1];
+    });
+});
