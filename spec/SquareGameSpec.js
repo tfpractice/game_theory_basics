@@ -48,11 +48,6 @@ describe('SquareGame', () => {
                 expect(myGame.f0('top')).toBeObject();
             });
         });
-        describe('when choice is not part of the players options', () => {
-            it('returns false', function() {
-                expect(myGame.f0('left')).toBeNull();
-            });
-        });
 
     });
     describe('f1(choice)', () => {
@@ -61,16 +56,19 @@ describe('SquareGame', () => {
                 expect(myGame.f1('left')).toBeObject();
             });
         });
-        describe('when choice is not part of the players options', () => {
-            it('returns false', function() {
-                expect(myGame.f1('top')).toBeNull();
-            });
-        });
 
     });
     describe('contextUtil(player, choice)', () => {
-        it('returns an array of strategies based on opponenets choice', function() {
-            expect(myGame.contextUtil(p1, 'left')).toBeObject();
+        describe('when choice is part of the players options', () => {
+            it('returns an array of strategies based on opponenets choice', function() {
+                expect(myGame.contextUtil(p1, 'left')).toBeObject();
+            });
         });
+        describe('when choice is not part of the players options', () => {
+            it('returns null', function() {
+                expect(myGame.contextUtil(p1, 'top')).toBeNull();
+            });
+        });
+
     });
 });

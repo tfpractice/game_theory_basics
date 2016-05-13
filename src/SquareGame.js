@@ -54,10 +54,16 @@ SquareGame.prototype.validateChoice = function(player, choice) {
 
 SquareGame.prototype.contextUtil = function(player, choice) {
     var result;
-    if (player.id == 0) {
-        result = this.f0(choice);
-    } else if (player.id == 1) {
-        result = this.f1(choice);
+    if (this.validateChoice(player, choice) == true) {
+        if (player.id == 0) {
+            result = this.f0(choice);
+        } else if (player.id == 1) {
+            result = this.f1(choice);
+        }
+    } else {
+        result = null;
     }
+
+
     return result;
 };
