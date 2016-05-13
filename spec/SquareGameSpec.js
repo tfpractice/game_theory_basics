@@ -12,5 +12,22 @@ describe('SquareGame', () => {
         it('has a uMat (utility matrix)', function() {
             expect(myGame.uMat).toBeObject();
         });
+        it('has an options array', function() {
+            expect(myGame.options).toBeArray();
+        });
+    });
+    describe('assignGame', () => {
+        beforeEach(function() {
+            myGame.assignGame();
+        });
+        it('assigns the current game to each player', function() {
+            expect(myGame.players[0].game).toBe(myGame);
+        });
+        it('assigns player opponents', function() {
+            expect(p0.opponent).toBe(p1);
+        });
+        it('assigns player options', function() {
+            expect(p0.options).toEqual(myGame.options[0]);
+        });
     });
 });
