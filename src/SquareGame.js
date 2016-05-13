@@ -33,3 +33,7 @@ SquareGame.prototype.assignGame = function() {
         p.setOptions(this.options[p.id]);
     }, this);
 };
+SquareGame.prototype.f0 = function(choice) {
+    return this.options[0].indexOf(choice) > -1 ? this.uMat[choice] : null;
+    // return this.uMat[choice];
+};
