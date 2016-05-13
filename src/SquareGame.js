@@ -33,7 +33,23 @@ SquareGame.prototype.assignGame = function() {
         p.setOptions(this.options[p.id]);
     }, this);
 };
+
 SquareGame.prototype.f0 = function(choice) {
     return this.options[0].indexOf(choice) > -1 ? this.uMat[choice] : null;
-    // return this.uMat[choice];
+};
+// SquareGame.prototype.f1 = function(choice) {
+//     return this.options[0].indexOf(choice) > -1 ? this.uMat[choice] : null;
+// };
+
+SquareGame.prototype.f1 = function(choice) {
+    var mat = this.uMat;
+    if (this.options[1].indexOf(choice) > -1) {
+        return Object.keys(mat).reduce(function(uArr, key, id, arr) {
+            uArr[key] = mat[key][choice];
+            return uArr;
+        }, {});
+    } else {
+        return null;
+    }
+
 };
