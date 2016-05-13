@@ -24,6 +24,7 @@ function SquareGame(p0 = new Player(0), p1 = new Player(1)) {
     };
     this.assignGame();
 }
+
 SquareGame.prototype.assignGame = function() {
     this.players.forEach(function(p, id) {
         var oppIndex = (p.id + 1) % 2;
@@ -34,20 +35,17 @@ SquareGame.prototype.assignGame = function() {
 };
 
 SquareGame.prototype.f0 = function(choice) {
-    return this.options[0].indexOf(choice) > -1 ? this.uMat[choice] : null;
+    return this.uMat[choice];
 };
 
 SquareGame.prototype.f1 = function(choice) {
-    if (this.options[1].indexOf(choice) > -1) {
-        var mat = this.uMat;
-        return Object.keys(mat).reduce(function(uArr, key, id, arr) {
-            uArr[key] = mat[key][choice];
-            return uArr;
-        }, {});
-    } else {
-        return null;
-    }
+    var mat = this.uMat;
+    return Object.keys(mat).reduce(function(uArr, key, id, arr) {
+        uArr[key] = mat[key][choice];
+        return uArr;
+    }, {});
 };
+
 SquareGame.prototype.validateChoice = function(player, choice) {
     return this.options[player.id].indexOf(choice) > -1 ? true : false;
 };
@@ -63,7 +61,5 @@ SquareGame.prototype.contextUtil = function(player, choice) {
     } else {
         result = null;
     }
-
-
     return result;
 };

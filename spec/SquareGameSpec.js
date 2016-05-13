@@ -43,20 +43,14 @@ describe('SquareGame', () => {
         });
     });
     describe('f0(choice)', () => {
-        describe('when choice is part of the players options', () => {
-            it('retuns the uMat utility values based on player 0s choice', function() {
-                expect(myGame.f0('top')).toBeObject();
-            });
+        it('retuns the uMat utility values based on player 0s choice', function() {
+            expect(myGame.f0('top')).toBeObject();
         });
-
     });
     describe('f1(choice)', () => {
-        describe('when choice is part of the players options', () => {
-            it('retuns the uMat utility values based on player 0s choice', function() {
-                expect(myGame.f1('left')).toBeObject();
-            });
+        it('retuns the uMat utility values based on player 0s choice', function() {
+            expect(myGame.f1('left')).toBeObject();
         });
-
     });
     describe('contextUtil(player, choice)', () => {
         describe('when choice is part of the players options', () => {
@@ -69,6 +63,5 @@ describe('SquareGame', () => {
                 expect(myGame.contextUtil(p1, 'top')).toBeNull();
             });
         });
-
     });
 });
