@@ -48,6 +48,9 @@ SquareGame.prototype.f1 = function(choice) {
         return null;
     }
 };
+SquareGame.prototype.validateChoice = function(player, choice) {
+    return this.options[player.id].indexOf(choice) > -1 ? true : false;
+};
 
 SquareGame.prototype.contextUtil = function(player, choice) {
     var result;

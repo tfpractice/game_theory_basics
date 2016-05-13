@@ -30,6 +30,18 @@ describe('SquareGame', () => {
             expect(p0.options).toEqual(myGame.options[0]);
         });
     });
+    describe('validateChoice(player,choice)', () => {
+        describe('when choice is part of the players options', () => {
+            it('retuns true', function() {
+                expect(myGame.validateChoice(p0, 'top')).toBeTrue();
+            });
+        });
+        describe('when choice is not part of the players options', () => {
+            it('returns false', function() {
+                expect(myGame.validateChoice(p0, 'left')).toBeFalse();
+            });
+        });
+    });
     describe('f0(choice)', () => {
         describe('when choice is part of the players options', () => {
             it('retuns the uMat utility values based on player 0s choice', function() {
