@@ -123,6 +123,14 @@ describe('Player', () => {
                 expect(p1.findDominated('center')).toContain('right');
             });
 
+
+        });
+        describe('addUnplayable(DStrat)', () => {
+            it('appends the strategy to the dominated array', function() {
+                p1.addUnplayable('right');
+                expect(p1.dominated).toContain('right');
+
+            });
         });
     });
 });

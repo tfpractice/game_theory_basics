@@ -51,6 +51,7 @@ Player.prototype.setDStrat = function() {
         var alts = this.altStrat(opt);
     }, this);
 };
+
 Player.prototype.findDominated = function(strat) {
     if (this.dominatesAny(strat) != false) {
         return this.altStrat(strat).filter(function(alt) {
@@ -58,6 +59,12 @@ Player.prototype.findDominated = function(strat) {
         }, this);
     } else {
         return null;
+    }
+};
+
+Player.prototype.addUnplayable = function(dStrat) {
+    if (this.dominated.indexOf(dStrat) < 0) {
+        this.dominated.push(dStrat);
     }
 };
 Player.prototype.dominatesAny = function(strat) {

@@ -31,20 +31,16 @@ Dilemma.prototype.contextUtil = function(player, choice) {
     }
     return result;
 };
-
 Dilemma.prototype.f0 = function(choice) {
     return this.uMat[choice];
 };
 
 Dilemma.prototype.f1 = function(choice) {
-    // var result = {};
     var mat = this.uMat;
     return Object.keys(this.uMat).reduce(function(uArr, key, id, arr) {
         uArr[key] = mat[key][choice];
         return uArr;
     }, {});
-    // console.log('rs', rs);
-
 };
 
 Dilemma.prototype.cIndex = function(choice) {
