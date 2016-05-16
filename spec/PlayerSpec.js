@@ -98,6 +98,7 @@ describe('Player', () => {
         });
         describe('setDStrat', () => {
             it('adds dominated strategies to the dominated array', function() {
+                p1.setDStrat();
                 expect(p1.dominated).toContain('right');
             });
         });
@@ -122,14 +123,11 @@ describe('Player', () => {
             it('returns an array of strategies dominated by the argument', function() {
                 expect(p1.findDominated('center')).toContain('right');
             });
-
-
         });
         describe('addUnplayable(DStrat)', () => {
             it('appends the strategy to the dominated array', function() {
                 p1.addUnplayable('right');
                 expect(p1.dominated).toContain('right');
-
             });
         });
     });

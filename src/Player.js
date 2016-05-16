@@ -48,15 +48,19 @@ Player.prototype.contextUtil = function(oChoice) {
 };
 Player.prototype.setDStrat = function() {
     this.options.map(function(opt) {
-        var alts = this.altStrat(opt);
+        this.findDominated(opt);
     }, this);
 };
 
 Player.prototype.findDominated = function(strat) {
     if (this.dominatesAny(strat) != false) {
-        return this.altStrat(strat).filter(function(alt) {
+        var dom = this.altStrat(strat).filter(function(alt) {
             return this.strictDom(strat, alt) == true;
         }, this);
+        dom.forEach(function(elem) {
+            this.addUnplayable(elem);
+        }, this);
+        return dom;
     } else {
         return null;
     }
