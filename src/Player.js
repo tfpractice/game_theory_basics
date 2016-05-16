@@ -10,6 +10,7 @@ function Player(id = 0) {
             name: 'defect'
         }
     };
+
     this.strict = [];
     this.weak = [];
     this.dominated = [];
@@ -53,6 +54,16 @@ Player.prototype.contextUtil = function(oChoice) {
         util[key] = poss[key][index];
         return util;
     }, {});
+};
+
+Player.prototype.setDStrat = function() {
+
+};
+
+Player.prototype.altStrat = function(strat) {
+    return this.options.filter(function(elem) {
+        return elem != strat;
+    }, this);
 };
 
 Player.prototype.bestOptions = function(oChoice) {
