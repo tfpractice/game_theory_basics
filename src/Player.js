@@ -52,14 +52,16 @@ Player.prototype.setDStrat = function() {
     }, this);
 };
 Player.prototype.findDominated = function(strat) {
-    var alts = this.altStrat(strat);
-    return alts.filter(function(elem) {
-        return this.strictDom(strat, alt) == true;
-    }, this);
+    if (this.dominatesAny(strat) != false) {
+        return this.altStrat(strat).filter(function(alt) {
+            return this.strictDom(strat, alt) == true;
+        }, this);
+    } else {
+        return null;
+    }
 };
 Player.prototype.dominatesAny = function(strat) {
-    var alts = this.altStrat(strat);
-    return alts.some(function(elem) {
+    return this.altStrat(strat).some(function(elem) {
         return this.strictDom(strat, elem) == true;
     }, this);
 };

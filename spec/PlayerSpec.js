@@ -119,7 +119,10 @@ describe('Player', () => {
             });
         });
         describe('findDominated(strat)', () => {
-            it('compares one strategy to its alternatives', function() {});
+            it('returns an array of strategies dominated by the argument', function() {
+                expect(p1.findDominated('center')).toContain('right');
+            });
+
         });
     });
 });
