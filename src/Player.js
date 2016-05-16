@@ -10,43 +10,34 @@ function Player(id = 0) {
             name: 'defect'
         }
     };
-
     this.strict = [];
     this.weak = [];
     this.dominated = [];
     this.bestChoices = [];
 }
-
 Player.prototype.updateStrategies = function() {
     this.options.forEach(function(el) {
         this.strategies[el];
     }, this);
 };
-
 Player.prototype.uStrat = function(strat, oChoice) {
     this.strategies[strat]['']
 };
-
 Player.prototype.setOpponent = function(opp) {
     this.opponent = opp;
 };
-
 Player.prototype.setOptions = function(opts = []) {
     this.options = opts;
 };
-
 Player.prototype.choose = function(option) {
     this.choice = this.options.indexOf(option)
 };
-
 Player.prototype.setGame = function(currGame) {
     this.game = currGame;
 };
-
 Player.prototype.oppContext = function(oChoice) {
     return (this.game.contextUtil(this.opponent, oChoice));
 };
-
 Player.prototype.contextUtil = function(oChoice) {
     var poss = this.oppContext(oChoice);
     var index = this.id;
@@ -55,17 +46,28 @@ Player.prototype.contextUtil = function(oChoice) {
         return util;
     }, {});
 };
-
 Player.prototype.setDStrat = function() {
-
+    this.options.map(function(opt) {
+        var alts = this.altStrat(opt);
+    }, this);
 };
-
+Player.prototype.findDominated = function(strat) {
+    var alts = this.altStrat(strat);
+    return alts.filter(function(elem) {
+        return this.strictDom(strat, alt) == true;
+    }, this);
+};
+Player.prototype.dominatesAny = function(strat) {
+    var alts = this.altStrat(strat);
+    return alts.some(function(elem) {
+        return this.strictDom(strat, elem) == true;
+    }, this);
+};
 Player.prototype.altStrat = function(strat) {
     return this.options.filter(function(elem) {
         return elem != strat;
     }, this);
 };
-
 Player.prototype.bestOptions = function(oChoice) {
     var pp = this.contextUtil(oChoice);
     var uA = Object.keys(pp).reduce(function(uArray, key) {
@@ -77,18 +79,15 @@ Player.prototype.bestOptions = function(oChoice) {
         return pp[key] == bestChoice;
     }, this);
 };
-
 Player.prototype.preferred = function(oChoice, choice, alt) {
     var utilSet = this.contextUtil(oChoice, choice, alt);
     return utilSet[choice] > utilSet[alt];
 };
-
 Player.prototype.strictDom = function(choice, alt) {
-    return this.options.every(function(context) {
+    return this.opponent.options.every(function(context) {
         return this.preferred(context, choice, alt) == true;
     }, this);
 };
-
 Player.prototype.setStrategies = function() {
     this.options.forEach(function(choice, choice) {
         this.bestChoices[choice] = this.bestOptions(choice);

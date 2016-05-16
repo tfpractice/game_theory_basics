@@ -64,7 +64,6 @@ describe('Player', () => {
         });
         describe('contextUtil', () => {
             it('returns an array players payoffs based on opponents choices', function() {
-                console.log(myP0.contextUtil('cooperate'));
                 expect(myP0.contextUtil('cooperate')).toBeObject();
             });
         });
@@ -87,7 +86,6 @@ describe('Player', () => {
             });
         });
     });
-
     describe('setStrategies', () => {
         it('appends the best option to the bestChoices array', function() {});
     });
@@ -98,7 +96,6 @@ describe('Player', () => {
             p0 = myGame.players[0];
             p1 = myGame.players[1];
         });
-
         describe('setDStrat', () => {
             it('adds dominated strategies to the dominated array', function() {
                 expect(p1.dominated).toContain('right');
@@ -109,6 +106,20 @@ describe('Player', () => {
                 expect(p0.altStrat('top')).not.toContain('top');
             });
         });
-
+        describe('dominatesAny(strat)', () => {
+            describe('when the given strategy dominates another', () => {
+                it('returns true', function() {
+                    expect(p1.dominatesAny('center')).toBeTrue();
+                });
+            });
+            describe('when the given strategy doesnt dominate another', () => {
+                it('returns false', function() {
+                    expect(p0.dominatesAny('top')).toBeFalse();
+                });
+            });
+        });
+        describe('findDominated(strat)', () => {
+            it('compares one strategy to its alternatives', function() {});
+        });
     });
 });
