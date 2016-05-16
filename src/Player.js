@@ -78,7 +78,7 @@ Player.prototype.dominatesAny = function(strat) {
 };
 Player.prototype.altStrat = function(strat) {
     return this.options.filter(function(elem) {
-        return elem != strat;
+        return elem != strat && this.dominated.indexOf(elem) < 0;
     }, this);
 };
 Player.prototype.bestOptions = function(oChoice) {
