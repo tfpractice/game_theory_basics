@@ -64,4 +64,9 @@ describe('SquareGame', () => {
             });
         });
     });
+    describe('playerBest(player)', () => {
+        it('returns the specified players bestChoices object', function() {
+            expect(myGame.playerBest(p0)).toBeObject();
+        });
+    });
 });

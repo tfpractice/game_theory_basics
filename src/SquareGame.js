@@ -36,8 +36,11 @@ SquareGame.prototype.assignGame = function() {
     }, this);
     this.players.forEach(function(p, id) {
         p.setDStrat();
+        p.optimizeChoices();
+        //console.log(p.bestChoices);
     }, this);
 };
+
 
 SquareGame.prototype.f0 = function(choice) {
     return this.uMat[choice];
@@ -67,4 +70,8 @@ SquareGame.prototype.contextUtil = function(player, choice) {
         result = null;
     }
     return result;
+};
+
+SquareGame.prototype.playerBest = function(player) {
+    return player.bestChoices;
 };

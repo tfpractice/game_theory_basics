@@ -5,7 +5,8 @@ function Player(id = 0) {
     this.strict = [];
     this.weak = [];
     this.dominated = [];
-    this.bestChoices = [];
+    this.bestChoices = {};
+
 }
 Player.prototype.updateStrategies = function() {
     this.options.forEach(function(el) {

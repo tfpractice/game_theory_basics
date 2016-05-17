@@ -25,8 +25,8 @@ describe('Player', () => {
             it('has a dominated array', function() {
                 expect(myP0.dominated).toBeArray();
             });
-            it('has a bestChoices array', function() {
-                expect(myP0.bestChoices).toBeArray();
+            it('has a bestChoices object', function() {
+                expect(myP0.bestChoices).toBeObject();
             });
 
         });
@@ -136,7 +136,7 @@ describe('Player', () => {
         describe('optimizeChoices', () => {
             it('fills the bestChoices object with an array of best options for each oppContext', function() {
                 p0.optimizeChoices();
-                console.log(p0.bestChoices);
+                //console.log(p0.bestChoices);
                 expect(p0.bestChoices['left']).toBeArray();
             });
         });
