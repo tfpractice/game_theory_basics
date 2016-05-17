@@ -12,9 +12,7 @@ Player.prototype.updateStrategies = function() {
         this.strategies[el];
     }, this);
 };
-Player.prototype.uStrat = function(strat, oChoice) {
-    this.strategies[strat]['']
-};
+
 Player.prototype.setOpponent = function(opp) {
     this.opponent = opp;
 };
@@ -76,7 +74,7 @@ Player.prototype.altStrat = function(strat) {
         return elem != strat;
     }, this);
 };
-Player.prototype.bestOptions = function(oChoice) {
+Player.prototype.bestResponse = function(oChoice) {
     var pp = this.contextUtil(oChoice);
     var uA = Object.keys(pp).reduce(function(uArray, key) {
         uArray.push(pp[key]);
@@ -98,6 +96,6 @@ Player.prototype.strictDom = function(choice, alt) {
 };
 Player.prototype.setStrategies = function() {
     this.options.forEach(function(choice, choice) {
-        this.bestChoices[choice] = this.bestOptions(choice);
+        this.bestChoices[choice] = this.bestResponse(choice);
     }, this);
 };

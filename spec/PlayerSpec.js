@@ -65,9 +65,9 @@ describe('Player', () => {
                 expect(myP0.contextUtil('cooperate')).toBeObject();
             });
         });
-        describe('bestOptions(oChoice)', () => {
+        describe('bestResponse(oChoice)', () => {
             it('retuns the optimal strategy given an opponents choice', function() {
-                expect(myP0.bestOptions("cooperate")).toContain("defect");
+                expect(myP0.bestResponse("cooperate")).toContain("defect");
             });
         });
         describe('strictDom(option)', () => {
