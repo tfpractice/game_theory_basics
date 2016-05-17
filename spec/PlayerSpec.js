@@ -133,5 +133,13 @@ describe('Player', () => {
                 expect(p1.dominated).toContain('right');
             });
         });
+        describe('optimizeChoices', () => {
+            it('fills the bestChoices object with an array of best options for each oppContext', function() {
+                p0.optimizeChoices();
+                console.log(p0.bestChoices);
+                expect(p0.bestChoices['left']).toBeArray();
+            });
+        });
     });
+
 });

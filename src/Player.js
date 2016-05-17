@@ -85,6 +85,12 @@ Player.prototype.bestResponse = function(oChoice) {
         return pp[key] == bestChoice;
     }, this);
 };
+Player.prototype.optimizeChoices = function() {
+    this.opponent.options.forEach(function(oChoice) {
+        this.bestChoices[oChoice] = this.bestResponse(oChoice);
+        // return something;
+    }, this);
+};
 Player.prototype.preferred = function(oChoice, choice, alt) {
     var utilSet = this.contextUtil(oChoice, choice, alt);
     return utilSet[choice] > utilSet[alt];
