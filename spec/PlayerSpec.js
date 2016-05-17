@@ -28,9 +28,7 @@ describe('Player', () => {
             it('has a bestChoices array', function() {
                 expect(myP0.bestChoices).toBeArray();
             });
-            it('has a strategies objects', function() {
-                expect(myP0.strategies).toBeObject();
-            });
+
         });
         describe('setOpponent(opp)', () => {
             it('sets the opponent attribute', function() {
@@ -105,6 +103,11 @@ describe('Player', () => {
         describe('altStrat(strat)', () => {
             it('returns an array of strategies excluding that which is provided', function() {
                 expect(p0.altStrat('top')).not.toContain('top');
+            });
+        });
+        describe('viable options', () => {
+            it('returns an array of options excluding dominated strategies', function() {
+                expect(p1.viableOpts()).not.toContain('right');
             });
         });
         describe('dominatesAny(strat)', () => {

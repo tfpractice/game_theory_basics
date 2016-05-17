@@ -1,15 +1,7 @@
 function Player(id = 0) {
     this.id = id;
     this.choice = null;
-    this.options = ['cooperate', 'defect'];
-    this.strategies = {
-        'cooperate': {
-            name: 'cooperate'
-        },
-        'defect': {
-            name: 'defect'
-        }
-    };
+    this.options = [];
     this.strict = [];
     this.weak = [];
     this.dominated = [];
@@ -47,11 +39,15 @@ Player.prototype.contextUtil = function(oChoice) {
     }, {});
 };
 Player.prototype.setDStrat = function() {
-    this.options.map(function(opt) {
+    this.options.forEach(function(opt) {
         this.findDominated(opt);
     }, this);
 };
-
+Player.prototype.viableOpts = function() {
+    return this.options.filter(function(elem) {
+        return this.dominated.indexOf(elem) < 0;
+    }, this);
+};
 Player.prototype.findDominated = function(strat) {
     if (this.dominatesAny(strat) != false) {
         var dom = this.altStrat(strat).filter(function(alt) {
@@ -65,7 +61,6 @@ Player.prototype.findDominated = function(strat) {
         return null;
     }
 };
-
 Player.prototype.addUnplayable = function(dStrat) {
     if (this.dominated.indexOf(dStrat) < 0) {
         this.dominated.push(dStrat);
@@ -78,7 +73,7 @@ Player.prototype.dominatesAny = function(strat) {
 };
 Player.prototype.altStrat = function(strat) {
     return this.options.filter(function(elem) {
-        return elem != strat && this.dominated.indexOf(elem) < 0;
+        return elem != strat;
     }, this);
 };
 Player.prototype.bestOptions = function(oChoice) {

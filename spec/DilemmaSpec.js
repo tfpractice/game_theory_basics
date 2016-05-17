@@ -21,7 +21,7 @@ describe('Dilemma', () => {
     });
     describe('cIndex(choice)', () => {
         it('retuns the index of the choice', function() {
-            expect(myDilemma.cIndex('cooperate')).toBe(0);
+            expect(myDilemma.cIndex(p0, 'cooperate')).toBe(0);
         });
     });
     describe('f0(choice)', () => {

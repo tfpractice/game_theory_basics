@@ -29,8 +29,13 @@ SquareGame.prototype.assignGame = function() {
     this.players.forEach(function(p, id) {
         var oppIndex = (p.id + 1) % 2;
         p.setGame(this);
-        p.setOpponent(this.players[oppIndex]);
         p.setOptions(this.options[p.id]);
+        p.setOpponent(this.players[oppIndex]);
+        // p.setDStrat();
+
+    }, this);
+    this.players.forEach(function(p, id) {
+        p.setDStrat();
     }, this);
 };
 

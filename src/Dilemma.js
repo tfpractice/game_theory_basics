@@ -1,8 +1,11 @@
 function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
     this.players = [p0, p1];
-    this.players[0].setOpponent(this.players[1]);
-    this.players[1].setOpponent(this.players[0]);
-    this.options = ['cooperate', 'defect'];
+    // this.players[0].setOpponent(this.players[1]);
+    // this.players[1].setOpponent(this.players[0]);
+    this.options = [
+        ['cooperate', 'defect'],
+        ['cooperate', 'defect']
+    ];
     this.uMat = {
         'cooperate': {
             'cooperate': [-1, -1],
@@ -18,7 +21,10 @@ function Dilemma(p0 = new Player(0), p1 = new Player(1)) {
 
 Dilemma.prototype.assignDilemma = function() {
     this.players.forEach(function(p) {
+        var oppIndex = (p.id + 1) % 2;
         p.setGame(this);
+        p.setOptions(this.options[p.id]);
+        p.setOpponent(this.players[oppIndex]);
     }, this);
 };
 
@@ -43,8 +49,8 @@ Dilemma.prototype.f1 = function(choice) {
     }, {});
 };
 
-Dilemma.prototype.cIndex = function(choice) {
-    return this.options.indexOf(choice);
+Dilemma.prototype.cIndex = function(player, choice) {
+    return this.options[player.id].indexOf(choice);
 };
 
 Dilemma.prototype.dominates = function(player, choice, alt, opponent, oChoice) {
@@ -53,7 +59,7 @@ Dilemma.prototype.dominates = function(player, choice, alt, opponent, oChoice) {
 };
 
 Dilemma.prototype.strictDominates = function(player, choice, alt, opponent) {
-    return this.options.every(function(strat) {
+    return this.options[player.id].every(function(strat) {
         return this.dominates(player, choice, alt, opponent, strat) == true;
     }, this);
 };
