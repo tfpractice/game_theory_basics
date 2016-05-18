@@ -138,5 +138,13 @@ describe('Player', () => {
                 expect(p0.bestChoices['left']).toBeArray();
             });
         });
+        describe('probUtil(oChoice, prob)', () => {
+            it('scales values of contextUtil by prob', function() {
+                var topUtil0 = p0.contextUtil('left')['top'];
+                var topValidation = topUtil0 * 0.3;
+                var topUtil1 = p0.probUtil("left", 0.3)['top'];
+                expect(p0.probUtil("left", 0.3)['top']).toEqual(topValidation);
+            });
+        });
     });
 });

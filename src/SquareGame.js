@@ -25,6 +25,7 @@ function SquareGame(p0 = new Player(0), p1 = new Player(1)) {
     this.equilibria = [];
     this.assignGame();
 }
+
 SquareGame.prototype.assignGame = function() {
     this.players.forEach(function(p, id) {
         var oppIndex = (p.id + 1) % 2;
@@ -37,9 +38,11 @@ SquareGame.prototype.assignGame = function() {
         p.optimizeChoices();
     }, this);
 };
+
 SquareGame.prototype.f0 = function(choice) {
     return this.uMat[choice];
 };
+
 SquareGame.prototype.f1 = function(choice) {
     var mat = this.uMat;
     return Object.keys(mat).reduce(function(uArr, key, id, arr) {
@@ -47,9 +50,11 @@ SquareGame.prototype.f1 = function(choice) {
         return uArr;
     }, {});
 };
+
 SquareGame.prototype.validateChoice = function(player, choice) {
     return this.options[player.id].indexOf(choice) > -1 ? true : false;
 };
+
 SquareGame.prototype.contextUtil = function(player, choice) {
     var result;
     if (this.validateChoice(player, choice) == true) {
@@ -63,6 +68,7 @@ SquareGame.prototype.contextUtil = function(player, choice) {
     }
     return result;
 };
+
 SquareGame.prototype.playerBest = function(player) {
     return player.bestChoices;
 };
@@ -70,9 +76,11 @@ SquareGame.prototype.playerBest = function(player) {
 SquareGame.prototype.bestIncludes = function(player, oChoice, pChoice) {
     return this.getBestResponse(player, oChoice).indexOf(pChoice) > -1;
 };
+
 SquareGame.prototype.getBestResponse = function(player, context) {
     return this.playerBest(player)[context];
 };
+
 SquareGame.prototype.singleNash = function(player, oChoice) {
     var choices = this.getBestResponse(player, oChoice);
     var opponent = player.opponent;
@@ -85,6 +93,7 @@ SquareGame.prototype.singleNash = function(player, oChoice) {
         }
     }, this);
 };
+
 SquareGame.prototype.nash = function() {
     this.players[1].options.filter(function(c1) {
         this.singleNash(this.players[0], c1);
