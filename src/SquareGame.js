@@ -64,24 +64,20 @@ SquareGame.prototype.contextUtil = function(player, choice) {
     return result;
 };
 SquareGame.prototype.playerBest = function(player) {
-    player.options.map(function(opt) {}, this);
     return player.bestChoices;
 };
-SquareGame.prototype.bestIncludes = function(player, choice, query) {
-    return player.bestChoices[choice].indexOf(query) > 0;
+
+SquareGame.prototype.bestIncludes = function(player, oChoice, pChoice) {
+    return this.getBestResponse(player, oChoice).indexOf(pChoice) > -1;
 };
-SquareGame.prototype.compareBest = function(player, choice, oChoice) {
-    var pChoices = player.bestChoices[oChoice];
-    var oChoices = player.opponent.bestChoices[choice];
-    pChoices.forEach(function(elem) {}, this);
-};
-SquareGame.prototype.queryBest = function(player, context) {
+SquareGame.prototype.getBestResponse = function(player, context) {
     return this.playerBest(player)[context];
 };
 SquareGame.prototype.singleNash = function(player, oChoice) {
-    var choices = player.bestChoices[oChoice];
-    choices.map(function(opt) {
-        if (player.opponent.bestChoices[opt].indexOf(oChoice) > -1) {
+    var choices = this.getBestResponse(player, oChoice);
+    var opponent = player.opponent;
+    choices.forEach(function(opt) {
+        if (this.bestIncludes(opponent, opt, oChoice) == true) {
             var nashArray = [oChoice, opt];
             if (this.equilibria.indexOf(nashArray) < 0) {
                 this.equilibria.push(nashArray);

@@ -81,17 +81,27 @@ describe('SquareGame', () => {
             });
         });
     });
-    describe('queryBest', () => {
+    describe('getBestResponse', () => {
         it('returns the players best response given a certain context', function() {
-            // console.log((myGame.queryBest(p0, "left")));
-            // myGame.singleNash(p0, 'center');
-            myGame.nash();
-            expect(myGame.queryBest(p0, "left")).toBeArray();
+            expect(myGame.getBestResponse(p0, "left")).toBeArray();
         });
     });
-    describe('compareBest(player, choice, oChoice', () => {
+    describe('bestIncludes(player, choice, oChoice', () => {
         it('compares players best responses to opponent choice and vice versa ', function() {
-            myGame.compareBest(p0, 'top', 'left');
+            myGame.bestIncludes(p0, 'left', 'top');
         });
+    });
+    describe('singleNash(player, oChoice)', () => {
+        it('populates the equilibria array with strategy profiles given a player and opponents choice', function() {
+            myGame.singleNash(p0, 'center');
+            expect(myGame.equilibria).toContain(['center', 'center']);
+        });
+    });
+    describe('nash', () => {
+        it('populates the equilibria array with all possible nash equilibria', function() {
+            myGame.nash();
+            expect(myGame.equilibria).toContain(['center', 'center']);
+        });
+
     });
 });
