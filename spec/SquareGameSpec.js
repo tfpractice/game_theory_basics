@@ -69,26 +69,15 @@ describe('SquareGame', () => {
             expect(myGame.playerBest(p0)).toBeObject();
         });
     });
-    describe('bestIncludes', () => {
-        describe('when specified strategy is included in players bestChoices', () => {
-            it('returns true', function() {
-                // expect(myGame.bestIncludes(p0, "left")).toBeTrue();
-            });
-        });
-        describe('when specified strategy is not included in players bestChoices', () => {
-            it('returns false', function() {
 
-            });
-        });
-    });
     describe('getBestResponse', () => {
         it('returns the players best response given a certain context', function() {
             expect(myGame.getBestResponse(p0, "left")).toBeArray();
         });
     });
     describe('bestIncludes(player, choice, oChoice', () => {
-        it('compares players best responses to opponent choice and vice versa ', function() {
-            myGame.bestIncludes(p0, 'left', 'top');
+        it('checks the players bestResponses to oChoice for the presence of choice', function() {
+            expect(myGame.bestIncludes(p0, 'center', 'center')).toBeTrue();;
         });
     });
     describe('singleNash(player, oChoice)', () => {
