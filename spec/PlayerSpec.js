@@ -28,7 +28,6 @@ describe('Player', () => {
             it('has a bestChoices object', function() {
                 expect(myP0.bestChoices).toBeObject();
             });
-
         });
         describe('setOpponent(opp)', () => {
             it('sets the opponent attribute', function() {
@@ -136,10 +135,8 @@ describe('Player', () => {
         describe('optimizeChoices', () => {
             it('fills the bestChoices object with an array of best options for each oppContext', function() {
                 p0.optimizeChoices();
-                //console.log(p0.bestChoices);
                 expect(p0.bestChoices['left']).toBeArray();
             });
         });
     });
-
 });

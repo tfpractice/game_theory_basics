@@ -22,30 +22,24 @@ function SquareGame(p0 = new Player(0), p1 = new Player(1)) {
             'right': [8, -1]
         }
     };
+    this.equilibria = [];
     this.assignGame();
 }
-
 SquareGame.prototype.assignGame = function() {
     this.players.forEach(function(p, id) {
         var oppIndex = (p.id + 1) % 2;
         p.setGame(this);
         p.setOptions(this.options[p.id]);
         p.setOpponent(this.players[oppIndex]);
-        // p.setDStrat();
-
     }, this);
     this.players.forEach(function(p, id) {
         p.setDStrat();
         p.optimizeChoices();
-        //console.log(p.bestChoices);
     }, this);
 };
-
-
 SquareGame.prototype.f0 = function(choice) {
     return this.uMat[choice];
 };
-
 SquareGame.prototype.f1 = function(choice) {
     var mat = this.uMat;
     return Object.keys(mat).reduce(function(uArr, key, id, arr) {
@@ -53,11 +47,9 @@ SquareGame.prototype.f1 = function(choice) {
         return uArr;
     }, {});
 };
-
 SquareGame.prototype.validateChoice = function(player, choice) {
     return this.options[player.id].indexOf(choice) > -1 ? true : false;
 };
-
 SquareGame.prototype.contextUtil = function(player, choice) {
     var result;
     if (this.validateChoice(player, choice) == true) {
@@ -71,7 +63,34 @@ SquareGame.prototype.contextUtil = function(player, choice) {
     }
     return result;
 };
-
 SquareGame.prototype.playerBest = function(player) {
+    player.options.map(function(opt) {}, this);
     return player.bestChoices;
+};
+SquareGame.prototype.bestIncludes = function(player, choice, query) {
+    return player.bestChoices[choice].indexOf(query) > 0;
+};
+SquareGame.prototype.compareBest = function(player, choice, oChoice) {
+    var pChoices = player.bestChoices[oChoice];
+    var oChoices = player.opponent.bestChoices[choice];
+    pChoices.forEach(function(elem) {}, this);
+};
+SquareGame.prototype.queryBest = function(player, context) {
+    return this.playerBest(player)[context];
+};
+SquareGame.prototype.singleNash = function(player, oChoice) {
+    var choices = player.bestChoices[oChoice];
+    choices.map(function(opt) {
+        if (player.opponent.bestChoices[opt].indexOf(oChoice) > -1) {
+            var nashArray = [oChoice, opt];
+            if (this.equilibria.indexOf(nashArray) < 0) {
+                this.equilibria.push(nashArray);
+            }
+        }
+    }, this);
+};
+SquareGame.prototype.nash = function() {
+    this.players[1].options.filter(function(c1) {
+        this.singleNash(this.players[0], c1);
+    }, this);
 };

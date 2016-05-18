@@ -6,14 +6,12 @@ function Player(id = 0) {
     this.weak = [];
     this.dominated = [];
     this.bestChoices = {};
-
 }
 Player.prototype.updateStrategies = function() {
     this.options.forEach(function(el) {
         this.strategies[el];
     }, this);
 };
-
 Player.prototype.setOpponent = function(opp) {
     this.opponent = opp;
 };
@@ -89,7 +87,6 @@ Player.prototype.bestResponse = function(oChoice) {
 Player.prototype.optimizeChoices = function() {
     this.opponent.options.forEach(function(oChoice) {
         this.bestChoices[oChoice] = this.bestResponse(oChoice);
-        // return something;
     }, this);
 };
 Player.prototype.preferred = function(oChoice, choice, alt) {
