@@ -50,6 +50,12 @@ Player.prototype.probUtil = function(oChoice, prob) {
     }, this.contextUtil(oChoice));
 };
 
+Player.prototype.expUtil = function(myChoice, c0, p0, c1, p1) {
+    var e0 = this.probUtil(c0, p0)[myChoice];
+    var e1 = this.probUtil(c1, p1)[myChoice];
+    return e0 + e1;
+};
+
 Player.prototype.setDStrat = function() {
     this.options.forEach(function(opt) {
         this.findDominated(opt);

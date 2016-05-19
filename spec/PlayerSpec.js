@@ -146,5 +146,11 @@ describe('Player', () => {
                 expect(p0.probUtil("left", 0.3)['top']).toEqual(topValidation);
             });
         });
+        describe('expUtil(c0,p0, c1,p1)', () => {
+            it('sums probUtils for an opponents mixed strategy', function() {
+                p0.expUtil('top', 'left', 0.6, 'center', 0.4);
+                expect(p0.expUtil('top', 'left', 0.6, 'center', 0.4)).toEqual(8.2);
+            });
+        });
     });
 });
