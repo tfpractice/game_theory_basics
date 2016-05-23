@@ -56,6 +56,27 @@ Player.prototype.expUtil = function(myChoice, c0, p0, c1, p1) {
     return e0 + e1;
 };
 
+Player.prototype.neutralizeOpponenet = function(myChoice, myAlt, oChoice, oAlt) {
+    this.opponent.expUtil(oChoice, myChoice, p0, myAlt, (1 - p0));
+
+    this.opponent.expUtil(oAlt, myChoice, p0, myAlt, (1 - p0));
+    var p0 = (this.opponent.probUtil(myAlt, p0) - this.probUtil(oA))
+};
+
+Player.prototype.neutralMix = function(myChoice, myAlt, oChoice, oAlt) {
+    var a = this.opponent.contextUtil(myChoice)[oChoice];
+    var b = this.opponent.contextUtil(myAlt)[oChoice];
+    var c = this.opponent.contextUtil(myChoice)[oAlt];
+    var d = this.opponent.contextUtil(myAlt)[oAlt];
+    console.log('a+b', 2 * a + (-1 * b));
+    console.log('c+d', 2 * c + (-1 * d));
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
+    return (d - b) / (a - c + d - b);
+};
+
 Player.prototype.setDStrat = function() {
     this.options.forEach(function(opt) {
         this.findDominated(opt);

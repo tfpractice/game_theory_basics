@@ -152,5 +152,16 @@ describe('Player', () => {
                 expect(p0.expUtil('top', 'left', 0.6, 'center', 0.4)).toEqual(8.2);
             });
         });
+        describe('neutralizeOpponent(myChoice, myAlt, oChoice, oAlt)', () => {
+            it('returns a distribution that renders the opponent indifferent between to=wo strategies', function() {
+
+            });
+
+        });
+        describe('neutralMix(myChoice, myAlt, oChoice, oAlt)', () => {
+            it('returns the quotient of the differences in utility given two contexts ', function() {
+                console.log(p0.neutralMix('top', 'center', 'left', 'center'));
+            });
+        });
     });
 });
